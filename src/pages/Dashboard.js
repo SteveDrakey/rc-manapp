@@ -184,15 +184,15 @@ function CategoryBreakdown({ tasks }) {
         const pct = total > 0 ? Math.round((complete / total) * 100) : 0;
 
         return (
-          <div key={cat} className="flex items-center gap-4">
-            <span className="text-sm text-slate-600 w-28 flex-shrink-0">{cat}</span>
-            <div className="flex-1">
+          <div key={cat} className="flex items-center gap-2 sm:gap-4">
+            <span className="text-xs sm:text-sm text-slate-600 w-20 sm:w-28 flex-shrink-0">{cat}</span>
+            <div className="flex-1 min-w-0">
               <ProgressBar percent={pct} size="sm" showLabel={false} />
             </div>
-            <span className="text-xs text-slate-500 w-24 text-right">
-              {complete}/{total} tasks
+            <span className="text-xs text-slate-500 w-16 sm:w-24 text-right flex-shrink-0">
+              {complete}/{total}
             </span>
-            <span className="text-sm font-semibold text-slate-700 w-12 text-right">
+            <span className="text-xs sm:text-sm font-semibold text-slate-700 w-10 sm:w-12 text-right flex-shrink-0">
               {pct}%
             </span>
           </div>
