@@ -130,11 +130,11 @@ export default function AllTasks() {
           <table className="w-full">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200">
-                <th className="text-left text-xs font-semibold text-slate-500 uppercase px-4 py-3">ID</th>
-                <th className="text-left text-xs font-semibold text-slate-500 uppercase px-4 py-3">Task</th>
+                <th className="text-left text-xs font-semibold text-slate-500 uppercase px-4 py-3 hidden sm:table-cell">ID</th>
+                <th className="text-left text-xs font-semibold text-slate-500 uppercase px-3 sm:px-4 py-3">Task</th>
                 <th className="text-left text-xs font-semibold text-slate-500 uppercase px-4 py-3 hidden md:table-cell">Site</th>
                 <th className="text-left text-xs font-semibold text-slate-500 uppercase px-4 py-3 hidden md:table-cell">Category</th>
-                <th className="text-left text-xs font-semibold text-slate-500 uppercase px-4 py-3">Status</th>
+                <th className="text-left text-xs font-semibold text-slate-500 uppercase px-3 sm:px-4 py-3">Status</th>
                 <th className="text-left text-xs font-semibold text-slate-500 uppercase px-4 py-3 hidden lg:table-cell">Assigned</th>
                 <th className="text-left text-xs font-semibold text-slate-500 uppercase px-4 py-3 hidden md:table-cell">Due</th>
                 <th className="text-left text-xs font-semibold text-slate-500 uppercase px-4 py-3 hidden lg:table-cell">Priority</th>
@@ -148,12 +148,12 @@ export default function AllTasks() {
                   new Date(task.DueDate) < new Date();
                 return (
                   <tr key={task.TaskID} className="hover:bg-slate-50 transition-colors">
-                    <td className="px-4 py-3 text-xs text-slate-400 font-mono">
+                    <td className="px-4 py-3 text-xs text-slate-400 font-mono hidden sm:table-cell">
                       {task.TaskID}
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-3 sm:px-4 py-3">
                       <p className="text-sm font-medium text-slate-700">{task.TaskName}</p>
-                      <p className="text-xs text-slate-400 mt-0.5 max-w-xs truncate">
+                      <p className="text-xs text-slate-400 mt-0.5 max-w-xs truncate hidden sm:block">
                         {task.Description}
                       </p>
                     </td>
@@ -163,7 +163,7 @@ export default function AllTasks() {
                     <td className="px-4 py-3 hidden md:table-cell">
                       <span className="text-xs text-slate-500">{task.Category}</span>
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-3 sm:px-4 py-3">
                       <StatusBadge status={task.Status} />
                     </td>
                     <td className="px-4 py-3 hidden lg:table-cell">

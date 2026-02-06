@@ -110,7 +110,7 @@ export default function SiteDetail() {
         </div>
 
         {/* Stats row */}
-        <div className="flex flex-wrap gap-6 mt-5">
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-3 sm:gap-6 mt-5">
           <Stat icon={CheckCircle2} color="text-emerald-500" label="Complete" value={progress.complete} />
           <Stat icon={Clock} color="text-blue-500" label="In Progress" value={progress.inProgress} />
           <Stat icon={Circle} color="text-slate-400" label="Not Started" value={progress.notStarted} />
@@ -174,13 +174,13 @@ export default function SiteDetail() {
           <table className="w-full">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200">
-                <th className="text-left text-xs font-semibold text-slate-500 uppercase px-4 py-3">
+                <th className="text-left text-xs font-semibold text-slate-500 uppercase px-3 sm:px-4 py-3">
                   Task
                 </th>
                 <th className="text-left text-xs font-semibold text-slate-500 uppercase px-4 py-3 hidden md:table-cell">
                   Category
                 </th>
-                <th className="text-left text-xs font-semibold text-slate-500 uppercase px-4 py-3">
+                <th className="text-left text-xs font-semibold text-slate-500 uppercase px-3 sm:px-4 py-3">
                   Status
                 </th>
                 <th className="text-left text-xs font-semibold text-slate-500 uppercase px-4 py-3 hidden lg:table-cell">
@@ -202,15 +202,15 @@ export default function SiteDetail() {
                   new Date(task.DueDate) < new Date();
                 return (
                   <tr key={task.TaskID} className="hover:bg-slate-50 transition-colors">
-                    <td className="px-4 py-3">
+                    <td className="px-3 sm:px-4 py-3">
                       <p className="text-sm font-medium text-slate-700">
                         {task.TaskName}
                       </p>
-                      <p className="text-xs text-slate-400 mt-0.5">
+                      <p className="text-xs text-slate-400 mt-0.5 hidden sm:block">
                         {task.Description}
                       </p>
                       {task.Notes && (
-                        <p className="text-xs text-slate-300 mt-0.5 italic">
+                        <p className="text-xs text-slate-300 mt-0.5 italic hidden sm:block">
                           {task.Notes}
                         </p>
                       )}
@@ -218,7 +218,7 @@ export default function SiteDetail() {
                     <td className="px-4 py-3 hidden md:table-cell">
                       <span className="text-xs text-slate-500">{task.Category}</span>
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-3 sm:px-4 py-3">
                       <StatusBadge status={task.Status} />
                     </td>
                     <td className="px-4 py-3 hidden lg:table-cell">

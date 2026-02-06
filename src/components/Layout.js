@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard,
@@ -6,6 +6,8 @@ import {
   ClipboardList,
   User,
   ChevronRight,
+  Menu,
+  X,
 } from 'lucide-react';
 
 const navItems = [
@@ -16,13 +18,46 @@ const navItems = [
 
 export default function Layout({ children }) {
   const location = useLocation();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Close sidebar on route change (mobile nav tap)
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [location.pathname]);
+
+  // Prevent body scroll when sidebar is open on mobile
+  useEffect(() => {
+    if (sidebarOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [sidebarOpen]);
 
   return (
     <div className="min-h-screen flex">
+      {/* Overlay backdrop for mobile */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-30 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="w-64 bg-slate-900 text-white flex flex-col flex-shrink-0">
+      <aside
+        className={`
+          fixed inset-y-0 left-0 z-40 w-64 bg-slate-900 text-white flex flex-col flex-shrink-0
+          transform transition-transform duration-200 ease-in-out
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+          md:relative md:translate-x-0 md:transition-none
+        `}
+      >
         {/* Logo / Brand */}
-        <div className="p-5 border-b border-slate-700">
+        <div className="p-5 border-b border-slate-700 flex items-center justify-between">
           <h1 className="text-lg font-bold tracking-tight">
             <span className="text-orange-400">Pizza Express</span>
             <br />
@@ -30,6 +65,13 @@ export default function Layout({ children }) {
               IT Rollout Programme
             </span>
           </h1>
+          {/* Close button - mobile only */}
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="md:hidden p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+          >
+            <X size={20} />
+          </button>
         </div>
 
         {/* Navigation */}
@@ -73,11 +115,20 @@ export default function Layout({ children }) {
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 overflow-auto">
+      <main className="flex-1 overflow-auto min-w-0">
         {/* Top bar */}
-        <header className="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between">
-          <Breadcrumbs />
+        <header className="bg-white border-b border-slate-200 px-4 md:px-6 py-3 md:py-4 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
+            {/* Hamburger - mobile only */}
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="md:hidden p-1.5 -ml-1 rounded-lg text-slate-600 hover:bg-slate-100"
+            >
+              <Menu size={22} />
+            </button>
+            <Breadcrumbs />
+          </div>
+          <div className="hidden sm:flex items-center gap-3">
             <span className="text-xs text-slate-400">Logged in as</span>
             <div className="flex items-center gap-2">
               <User size={16} className="text-slate-500" />
@@ -87,7 +138,7 @@ export default function Layout({ children }) {
             </div>
           </div>
         </header>
-        <div className="p-6">{children}</div>
+        <div className="p-4 md:p-6">{children}</div>
       </main>
     </div>
   );
