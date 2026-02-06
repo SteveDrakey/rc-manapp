@@ -31,7 +31,7 @@ export default function Dashboard() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500" />
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-rc-300" />
       </div>
     );
   }
@@ -48,24 +48,24 @@ export default function Dashboard() {
     <div className="space-y-6">
       {/* Page title */}
       <div>
-        <h1 className="text-2xl font-bold text-slate-800">Project Dashboard</h1>
-        <p className="text-slate-500 text-sm mt-1">
-          Pizza Express New Site IT Rollout — 5 locations
+        <h1 className="text-2xl font-bold text-shark-800">Project Dashboard</h1>
+        <p className="text-shark-500 text-sm mt-1">
+          Redcentric IT Rollout Programme — {sites.length} locations
         </p>
       </div>
 
       {/* Overall progress */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+      <div className="bg-white rounded-xl border border-shark-200 shadow-sm p-6">
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-semibold text-slate-600 uppercase tracking-wider">
+          <h2 className="text-sm font-semibold text-shark-600 uppercase tracking-wider">
             Overall Programme Progress
           </h2>
-          <span className="text-2xl font-bold text-slate-800">
+          <span className="text-2xl font-bold text-shark-800">
             {overall.percent}%
           </span>
         </div>
         <ProgressBar percent={overall.percent} size="lg" showLabel={false} />
-        <p className="text-xs text-slate-400 mt-2">
+        <p className="text-xs text-shark-400 mt-2">
           {overall.complete} of {overall.total} tasks complete across all sites
         </p>
       </div>
@@ -91,7 +91,7 @@ export default function Dashboard() {
           value={overall.inProgress}
           subtitle="Active tasks"
           icon={Clock}
-          color="orange"
+          color="teal"
         />
         <KpiCard
           title="Overdue"
@@ -106,7 +106,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Sites */}
         <div className="lg:col-span-2">
-          <h2 className="text-sm font-semibold text-slate-600 uppercase tracking-wider mb-3">
+          <h2 className="text-sm font-semibold text-shark-600 uppercase tracking-wider mb-3">
             Site Progress
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -118,12 +118,12 @@ export default function Dashboard() {
 
         {/* Upcoming deadlines */}
         <div>
-          <h2 className="text-sm font-semibold text-slate-600 uppercase tracking-wider mb-3">
+          <h2 className="text-sm font-semibold text-shark-600 uppercase tracking-wider mb-3">
             Upcoming Deadlines
           </h2>
-          <div className="bg-white rounded-xl border border-slate-200 shadow-sm divide-y divide-slate-100">
+          <div className="bg-white rounded-xl border border-shark-200 shadow-sm divide-y divide-shark-100">
             {upcoming.length === 0 ? (
-              <div className="p-4 text-sm text-slate-400 text-center">
+              <div className="p-4 text-sm text-shark-400 text-center">
                 No upcoming deadlines
               </div>
             ) : (
@@ -133,10 +133,10 @@ export default function Dashboard() {
                   <div key={task.TaskID} className="p-3">
                     <div className="flex items-start justify-between">
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-slate-700 truncate">
+                        <p className="text-sm font-medium text-shark-700 truncate">
                           {task.TaskName}
                         </p>
-                        <p className="text-xs text-slate-400 mt-0.5">
+                        <p className="text-xs text-shark-400 mt-0.5">
                           {task.SiteName}
                         </p>
                       </div>
@@ -145,7 +145,7 @@ export default function Dashboard() {
                     <div className="flex items-center gap-2 mt-2">
                       <span
                         className={`text-xs ${
-                          isOverdue ? 'text-red-500 font-medium' : 'text-slate-400'
+                          isOverdue ? 'text-red-500 font-medium' : 'text-shark-400'
                         }`}
                       >
                         {isOverdue ? 'Overdue: ' : 'Due: '}
@@ -162,8 +162,8 @@ export default function Dashboard() {
       </div>
 
       {/* Category breakdown */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
-        <h2 className="text-sm font-semibold text-slate-600 uppercase tracking-wider mb-4">
+      <div className="bg-white rounded-xl border border-shark-200 shadow-sm p-6">
+        <h2 className="text-sm font-semibold text-shark-600 uppercase tracking-wider mb-4">
           Progress by Phase
         </h2>
         <CategoryBreakdown tasks={tasks} />
@@ -185,14 +185,14 @@ function CategoryBreakdown({ tasks }) {
 
         return (
           <div key={cat} className="flex items-center gap-4">
-            <span className="text-sm text-slate-600 w-28 flex-shrink-0">{cat}</span>
+            <span className="text-sm text-shark-600 w-28 flex-shrink-0">{cat}</span>
             <div className="flex-1">
               <ProgressBar percent={pct} size="sm" showLabel={false} />
             </div>
-            <span className="text-xs text-slate-500 w-24 text-right">
+            <span className="text-xs text-shark-500 w-24 text-right">
               {complete}/{total} tasks
             </span>
-            <span className="text-sm font-semibold text-slate-700 w-12 text-right">
+            <span className="text-sm font-semibold text-shark-700 w-12 text-right">
               {pct}%
             </span>
           </div>

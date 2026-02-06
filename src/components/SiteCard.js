@@ -10,39 +10,39 @@ export default function SiteCard({ site }) {
 
   const statusColor = {
     Complete: 'border-emerald-400',
-    'In Progress': 'border-blue-400',
-    'Not Started': 'border-slate-300',
+    'In Progress': 'border-rc-300',
+    'Not Started': 'border-shark-300',
   };
 
   return (
     <Link
       to={`/sites/${site.id}`}
-      className={`block bg-white rounded-xl border-l-4 ${statusColor[status]} border border-slate-200 shadow-sm hover:shadow-md transition-shadow p-5`}
+      className={`block bg-white rounded-xl border-l-4 ${statusColor[status]} border border-shark-200 shadow-sm hover:shadow-md transition-shadow p-5`}
     >
       <div className="flex items-start justify-between mb-3">
         <div>
-          <h3 className="font-semibold text-slate-800">{site.name}</h3>
-          <div className="flex items-center gap-1 text-xs text-slate-400 mt-1">
+          <h3 className="font-semibold text-shark-800">{site.name}</h3>
+          <div className="flex items-center gap-1 text-xs text-shark-400 mt-1">
             <MapPin size={12} />
             {site.address}
           </div>
         </div>
-        <ArrowRight size={18} className="text-slate-400" />
+        <ArrowRight size={18} className="text-shark-400" />
       </div>
 
       <ProgressBar percent={progress.percent} size="sm" />
 
-      <div className="flex items-center gap-4 mt-3 text-xs text-slate-500">
+      <div className="flex items-center gap-4 mt-3 text-xs text-shark-500">
         <span className="flex items-center gap-1">
           <CheckCircle2 size={12} className="text-emerald-500" />
           {progress.complete} done
         </span>
         <span className="flex items-center gap-1">
-          <Clock size={12} className="text-blue-500" />
+          <Clock size={12} className="text-rc-500" />
           {progress.inProgress} active
         </span>
         <span className="flex items-center gap-1">
-          <Circle size={12} className="text-slate-400" />
+          <Circle size={12} className="text-shark-400" />
           {progress.notStarted} pending
         </span>
       </div>

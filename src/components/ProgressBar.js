@@ -11,21 +11,21 @@ export default function ProgressBar({ percent, size = 'md', showLabel = true }) 
     percent === 100
       ? 'bg-emerald-500'
       : percent >= 50
-      ? 'bg-blue-500'
+      ? 'bg-rc-300'
       : percent > 0
-      ? 'bg-orange-500'
-      : 'bg-slate-300';
+      ? 'bg-rc-400'
+      : 'bg-shark-300';
 
   return (
     <div className="flex items-center gap-3">
-      <div className={`flex-1 bg-slate-100 rounded-full overflow-hidden ${heightMap[size]}`}>
+      <div className={`flex-1 bg-shark-100 rounded-full overflow-hidden ${heightMap[size]}`}>
         <div
           className={`${barColor} ${heightMap[size]} rounded-full transition-all duration-500`}
           style={{ width: `${percent}%` }}
         />
       </div>
       {showLabel && (
-        <span className="text-sm font-semibold text-slate-600 min-w-[40px] text-right">
+        <span className="text-sm font-semibold text-shark-600 min-w-[40px] text-right">
           {percent}%
         </span>
       )}

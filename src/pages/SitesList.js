@@ -16,7 +16,7 @@ export default function SitesList() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500" />
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-rc-300" />
       </div>
     );
   }
@@ -26,8 +26,8 @@ export default function SitesList() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-800">All Sites</h1>
-        <p className="text-slate-500 text-sm mt-1">
+        <h1 className="text-2xl font-bold text-shark-800">All Sites</h1>
+        <p className="text-shark-500 text-sm mt-1">
           Click a site to view detailed progress and tasks
         </p>
       </div>
